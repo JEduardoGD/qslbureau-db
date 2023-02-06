@@ -12,7 +12,7 @@ services:
       - sonarqube_extensions:/opt/sonarqube/extensions
 #    environment:
 #      SONARQUBE_JDBC_USERNAME: root
-#      SONARQUBE_JDBC_PASSWORD: toor
+#      SONARQUBE_JDBC_PASSWORD: ${ROOT_PASSWORD}
 #      SONARQUBE_JDBC_URL: jdbc:mysql://mysql-docker:3306/sonarqube?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
     restart: always
     ulimits:
@@ -26,7 +26,7 @@ services:
   mysql-docker:
    image: mysql:5.7.28
    environment:
-     MYSQL_ROOT_PASSWORD: toor
+     MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
    ports:
      - 3306:3306
    volumes:
@@ -44,7 +44,7 @@ services:
       - '80:80'
     environment:
       PMA_HOST: mysql-docker
-      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
     networks:
       - asgard
 
