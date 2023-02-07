@@ -22,15 +22,11 @@ services:
         hard: 40000
     networks:
       - asgard
-    env_file: env.properties
+    env_file:
+      - env.properties
 
   mysql-docker:
    image: mysql:5.7.28
-   environment:
-     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-     MYSQL_DATABASE: ${MYSQL_DATABASE}
-     MYSQL_USER: ${MYSQL_USER}
-     MYSQL_PASSWORD: ${MYSQL_PASSWORD}
    ports:
      - 3306:3306
    volumes:
@@ -38,7 +34,8 @@ services:
 #   - ./initdata/initdb.sql:/docker-entrypoint-initdb.d/init.sql
    networks:
       - asgard
-   env_file: env.properties
+   env_file:
+      - env.properties
 
   phpmyadmin-docker:
     depends_on:
@@ -49,10 +46,10 @@ services:
       - '80:80'
     environment:
       PMA_HOST: mysql-docker
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
       - asgard
-    env_file: env.properties
+    env_file:
+      - env.properties
 
 networks:
   asgard:
